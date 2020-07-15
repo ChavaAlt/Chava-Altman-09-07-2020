@@ -13,18 +13,20 @@ export class TaskController {
 
     public create_task(req: Request, res: Response) {
 
-        let role = parseInt(req.header('role'));
+       // let role = parseInt(req.header('role'));
+       let role=1;
         if (!enviornment.IsAdminRole(role))
             failureResponse("no Allowence", req.body, res)
-        if (req.body.title && req.body.description && req.body.dateCreation && req.body.taskOwner && role == enviornment.IsAdminRole(role)) {
+        if (req.body.title && req.body.description   && role == enviornment.IsAdminRole(role)) {
             const task_params: ITask = {
                 title: req.body.title,
                 description: req.body.description,
                 userName:req.body.userName,
                 phone:req.body.phone,
                 email:req.body.email,
-                dateCreation: Date.now.toString(),
-                taskOwner: req.body.taskOwner
+                dateCreation: Date.now().toString(),
+                //taskOwner: req.header('user_id')
+                taskOwner:"5f0612a8e9a04b31501d2c7b"
             };
             this.task_service.createTask(task_params, (err: any, task_data: ITask) => {
                 if (err) {
@@ -71,7 +73,7 @@ export class TaskController {
         if (req.params.id) {
            this.task_service.task_filter={ _id: req.params.id };
             if(!enviornment.IsAdminRole(role))
-            this,this.task_service.task_filter = { _id: req.params.id ,taskOwner:user_id};
+            this.task_service.task_filter = { _id: req.params.id ,taskOwner:user_id};
             this.task_service.filterTask(this.task_service.task_filter, (err: any, task_data: ITask) => {
                 if (err) {
                     mongoError(err, res);

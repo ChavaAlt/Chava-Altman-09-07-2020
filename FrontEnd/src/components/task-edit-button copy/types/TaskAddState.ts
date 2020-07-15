@@ -1,3 +1,5 @@
+import { Task} from '../../../model/Task'
 export interface TaskAddState {
-    showModal: boolean
+    showModal: boolean,
+    task:Task
 }

@@ -3,6 +3,7 @@ import {ITaskCloseButtonProps} from "./types/ITaskCloseButtonProps";
 import {connect} from "react-redux";
 import {deleteTask} from "../../store/actions/task-actions";
 import {Button} from "react-bootstrap";
+import * as Api from '../../api/apiManager';
 
 class TaskCloseButton extends React.Component<ITaskCloseButtonProps, {}> {
 
@@ -11,8 +12,16 @@ class TaskCloseButton extends React.Component<ITaskCloseButtonProps, {}> {
     }
 
     public handleClick = () => {
-        console.log('got id: ', this.props.id);
+        this.DeleteTask();
+    }
+
+    public DeleteTask = async () => {
+        Api.deleteTask(this.props.id)
+    .then(() => {
         this.onRemoveTask();
+    }).catch((err) => {
+        console.log(err)
+    });
     }
 
     public render() {

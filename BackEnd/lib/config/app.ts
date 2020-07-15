@@ -3,6 +3,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as mongoose from 'mongoose';
 import * as path from 'path'
+import * as cors from 'cors'
 import environment from "../enviornment";
 import { UserRoutes } from "../routes/user-routes";
 import {TaskRoutes} from "../routes/task-routes"
@@ -24,6 +25,7 @@ class App {
    }
 
    private config(): void {
+      this.app.use(cors())
       
       // support application/json type post data
       this.app.use(bodyParser.json());

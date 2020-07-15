@@ -12,6 +12,7 @@ class TodoHeader extends React.Component<ITodoHeaderProps, {}> {
     public render() {
         return (
             <h1 className="header">{this.props.name}</h1>
+            
         );
     }
 }

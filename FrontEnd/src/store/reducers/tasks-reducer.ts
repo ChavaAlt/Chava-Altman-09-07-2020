@@ -8,8 +8,10 @@ const tasksReducer = (state: Task[] = [], action: any) => {
         case READ_TASKS:
             newState = [
                 ...state,
-                action.payload.tasks
+                ...action.payload.tasks
             ];
+
+            // newState = newState.concat({...action.payload.tasks})
             return newState;       
         case DELETE_TASK:
             return state.filter(task => task._id !== action.payload.id);
@@ -18,10 +20,11 @@ const tasksReducer = (state: Task[] = [], action: any) => {
                     ...state,
                     action.payload.task
                 ];
+                
                 return newState; 
 
                 case UPDATE_TASK:
-                state = state.filter(task => task._id !== action.payload.task._id);
+               state = state.filter(task => task._id !== action.payload.task._id);
                newState = [
                     ...state,
                     action.payload.task

@@ -8,7 +8,7 @@ export interface ITask {
     phone:String,
     email:String
     dateCreation:String,
-    taskOwner:Number,
+    taskOwner:String,
     isCompleted?:Boolean
 
 }

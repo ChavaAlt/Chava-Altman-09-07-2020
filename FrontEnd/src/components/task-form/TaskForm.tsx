@@ -23,7 +23,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
     };
 
     public handleClick = () => {
-       
+       this.onAddTask();
         // this.onEditTask();
     }
 
@@ -37,7 +37,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
                        onChange={this.inputChange} value={ this.state.currentTask }/>
                         </Col>
                         <Col sm={6} xs={12}>
-                            <Button bsStyle="info" type="submit" onClick={this.handleClick}>Add task</Button>
+                            <Button bsStyle="success" type="submit" onClick={this.handleClick}>משימה חדשה</Button>
                         </Col>
                     </Row>
                 </Grid>
